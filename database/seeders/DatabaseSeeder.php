@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,11 +20,18 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'ketua yayasan']);
-        Role::create(['name' => 'kepala sekolah']);
-        Role::create(['name' => 'wakil kepala sekolah']);
-        Role::create(['name' => 'guru']);
-        Role::create(['name' => 'tendik']);
+        $id = Role::create(['nama' => 'admin']);
+        Role::create(['nama' => 'kepala sekolah']);
+        Role::create(['nama' => 'wakil kepala sekolah']);
+        Role::create(['nama' => 'guru']);
+        Role::create(['nama' => 'tendik']);
+        User::create([
+            'nama' => 'bintang admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin'),
+            'kode' => '1222228282828',
+            'role_id' => $id->id,
+            'no_hp' => '081234567890',
+        ]);
     }
 }
