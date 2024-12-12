@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KpiController;
 use App\Http\Controllers\AuthController;
 
 /*
@@ -23,5 +24,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return inertia('Dashboard');
     })->name('dashboard');
+
+    Route::middleware(['cekrole:admin'])->group(function () {
+        Route::resource('kpi', KpiController::class);
+    });
 
 });

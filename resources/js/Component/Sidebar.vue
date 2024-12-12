@@ -10,7 +10,16 @@
 						<div class="clearfix"></div>
 					</Link>
 				</li>
-				
+				<li class="mt-5">
+					<Link href="/kpi" :class="{'active':isActive('/kpi')}">
+						<div class="pull-left">
+							<i class="ti-clipboard mr-20"></i>
+							<span class="right-nav-text">KPI</span>
+						</div>
+						<div class="clearfix"></div>
+					</Link>
+				</li>
+
 				
 				
 				
