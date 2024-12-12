@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GuruController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -15,6 +16,7 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', [AuthController::class, 'login'])->name('login');
+Route::get('/guru', [GuruController::class, 'index'])->name('index');
 Route::get('/dashboard', function () {
     return inertia('Dashboard');
 })->name('dashboard');

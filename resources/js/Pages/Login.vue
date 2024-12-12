@@ -13,7 +13,7 @@
 				</div> -->
 				<div class="clearfix"></div>
 			</header>
-			
+
 			<!-- Main Content -->
 			<div class="page-wrapper pa-0 ma-0 auth-page">
 				<div class="container-fluid">
@@ -26,7 +26,7 @@
 										<div class="mb-30">
 											<h3 class="text-center txt-dark mb-10">Sign in to SIM</h3>
 											<h6 class="text-center nonecase-font txt-grey">Enter your details below</h6>
-										</div>	
+										</div>
 										<div class="form-wrap">
 											<!-- <form > -->
 												<div class="form-group">
@@ -39,7 +39,7 @@
 													<div class="clearfix"></div>
 													<input type="password" class="form-control" required="" id="exampleInputpwd_2" placeholder="Enter pwd">
 												</div>
-												
+
 												<!-- <div class="form-group">
 													<div class="checkbox checkbox-primary pr-10 pull-left">
 														<input id="checkbox_2" required="" type="checkbox">
@@ -52,17 +52,17 @@
 												</div>
 											<!-- </form> -->
 										</div>
-									</div>	
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- /Row -->	
+					<!-- /Row -->
 				</div>
-				
+
 			</div>
 			<!-- /Main Content -->
-		
+
 		</div>
 </template>
 

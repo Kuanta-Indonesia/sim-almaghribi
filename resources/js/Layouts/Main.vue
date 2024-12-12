@@ -1,9 +1,9 @@
 <template>
 
     <!--Preloader-->
-    <div class="preloader-it">
-        <div class="la-anim-1"></div>
-    </div>
+<!--    <div class="preloader-it">-->
+<!--        <div class="la-anim-1"></div>-->
+<!--    </div>-->
     <!--/Preloader-->
 
     <div id="main-wrap" class="wrapper theme-1-active pimary-color-green ">
