@@ -15,6 +15,7 @@
             </div>
             <div v-for="(kpiInstrument, index) in kpi" :key="index">
                 <h5 class="txt-dark mb-20 ">{{ kpiInstrument.nama }}</h5>
+                <h6 class="txt-dark mb-20 txt-small ">{{ kpiInstrument.deskripsi }}</h6>
 
                 <div class="row ">
                     <div v-for="(kpiPerformance, index) in kpiInstrument.performance" :key="index"

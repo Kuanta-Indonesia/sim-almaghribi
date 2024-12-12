@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class KpiScore extends Model
 {
+    protected $guarded = [];
+
     use HasFactory;
     /**
      * Get the performance that owns the KpiScore

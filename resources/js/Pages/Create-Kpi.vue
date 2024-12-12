@@ -88,7 +88,7 @@ import { usePage } from '@inertiajs/inertia-vue3';
 import { ref } from 'vue';
 
 export default {
-    name: 'Kpi',
+    name: 'Create-Kpi',
     setup() {
         let isNew = ref(false);
         const { kpi } = usePage().props.value;

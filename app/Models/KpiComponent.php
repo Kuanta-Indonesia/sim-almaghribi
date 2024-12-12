@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class KpiComponent extends Model
 {
+    protected $guarded = [];
+
     use HasFactory;
     /**
      * Get the instrument that owns the KpiComponent

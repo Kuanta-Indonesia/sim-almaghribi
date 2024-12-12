@@ -14,6 +14,7 @@ class KpiInstrument extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    protected $guarded = [];
     public function performance()
     {
         return $this->hasMany(KpiPerformance::class);
