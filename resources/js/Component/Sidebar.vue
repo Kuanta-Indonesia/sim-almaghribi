@@ -19,6 +19,15 @@
 						<div class="clearfix"></div>
 					</Link>
 				</li>
+				<li class="mt-10">
+					<Link href="/penilaian" :class="{'active':isActive('/penilaian')}">
+						<div class="pull-left">
+							<i class="ti-pencil-alt mr-20"></i>
+							<span class="right-nav-text">penilaian</span>
+						</div>
+						<div class="clearfix"></div>
+					</Link>
+				</li>
 
 				
 				

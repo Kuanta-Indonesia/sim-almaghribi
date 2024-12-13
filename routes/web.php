@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KpiController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PenilaianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['cekrole:admin'])->group(function () {
         Route::resource('kpi', KpiController::class);
+        Route::resource('penilaian', PenilaianController::class);
     });
 
 });

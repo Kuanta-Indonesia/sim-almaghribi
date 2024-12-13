@@ -18,6 +18,6 @@ class KpiScore extends Model
      */
     public function performance()
     {
-        return $this->belongsTo(KpiPerformance::class);
+        return $this->belongsTo(KpiPerformance::class, 'kpi_performance_id', 'id', 'kpi_performances');
     }
 }
