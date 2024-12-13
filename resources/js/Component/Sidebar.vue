@@ -1,7 +1,7 @@
 <template>
     <div class="fixed-sidebar-left">
 			<ul class="nav navbar-nav side-nav nicescroll-bar pt-5">
-				<li class="mt-5">
+				<li class="mt-20">
 					<Link href="/dashboard" :class="{'active':isActive('/dashboard')}">
 						<div class="pull-left">
 							<i class="zmdi zmdi-landscape mr-20"></i>
@@ -10,7 +10,7 @@
 						<div class="clearfix"></div>
 					</Link>
 				</li>
-				<li class="mt-5">
+				<li class="mt-10">
 					<Link href="/kpi" :class="{'active':isActive('/kpi')}">
 						<div class="pull-left">
 							<i class="ti-clipboard mr-20"></i>

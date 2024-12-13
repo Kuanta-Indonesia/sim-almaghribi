@@ -9,13 +9,13 @@
                 </div>
                 <div class="col">
                     <Link href="/kpi/create" class="btn btn-primary btn-rounded btn-icon left-icon">
-                        <i class="fa fa-plus"></i>
-                        Tambahkan</Link>
+                    <i class="fa fa-plus"></i>
+                    Tambahkan</Link>
                 </div>
             </div>
             <div v-for="(kpiInstrument, index) in kpi" :key="index">
-                <h5 class="txt-dark mb-20 ">{{ kpiInstrument.nama }}</h5>
-                <h6 class="txt-dark mb-20 txt-small ">{{ kpiInstrument.deskripsi }}</h6>
+                <h5 class="txt-dark  ">{{ kpiInstrument.nama }}</h5>
+                <p class="mb-20 ">{{ kpiInstrument.deskripsi }}</p>
 
                 <div class="row ">
                     <div v-for="(kpiPerformance, index) in kpiInstrument.performance" :key="index"
@@ -35,8 +35,8 @@
                                         <i class="zmdi zmdi-chevron-up"></i>
                                     </a>
                                     <div class="pull-left inline-block dropdown mr-15">
-                                        <Link :href="`/kpi/`+kpiPerformance.id+`/edit`" class="dropdown-toggle" aria-expanded="false"
-                                            role="button"><i class="zmdi zmdi-more-vert"></i>
+                                        <Link :href="`/kpi/` + kpiPerformance.id + `/edit`" class="dropdown-toggle"
+                                            aria-expanded="false" role="button"><i class="fa fa-pencil"></i>
                                         </Link>
                                     </div>
                                     <!-- <a href="#" class="pull-left inline-block refresh mr-15">
@@ -45,7 +45,7 @@
                                     <a href="#" class="pull-left inline-block full-screen mr-15">
                                         <i class="zmdi zmdi-fullscreen"></i>
                                     </a> -->
-                                    <a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                    <a @click="deleteKpi(kpiPerformance.id)" class="pull-left inline-block close-panel">
                                         <i class="zmdi zmdi-close"></i>
                                     </a>
                                 </div>
@@ -92,12 +92,15 @@
 <script>
 import { Link } from '@inertiajs/inertia-vue3';
 import { usePage } from '@inertiajs/inertia-vue3';
-
+import '/resources/vendors/bower_components/sweetalert/dist/sweetalert.min.js';
+import { useForm } from '@inertiajs/inertia-vue3';
+import { Inertia } from '@inertiajs/inertia';
 
 export default {
     name: 'Kpi',
     setup() {
         const page = usePage();
+        const form = useForm()
         if (page.props.value.flash.success) {
             $.toast({
                 heading: 'Success',
@@ -107,15 +110,49 @@ export default {
                 position: 'top-right'
             });
         }
+        if (page.props.value.flash.error) {
+            $.toast({
+                heading: 'error',
+                text: page.props.value.flash?.error,
+                showHideTransition: 'slide',
+                icon: 'error',
+                position: 'top-right'
+            });
+        }
         const { kpi } = usePage().props.value;
 
+        const deleteKpi = (id) => {
+            swal({
+                title: "Apakah anda yakin untuk menghapus data?",
+                text: "anda tidak dapat menghapus jika data sudah digunakan!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#f0c541",
+                confirmButtonText: "Ya saya tahu!",
+                closeOnConfirm: true
+            }, function () {
+                form.delete(`/kpi/${id}`, {
+                    onSuccess: (res) => {
+                        Inertia.visit('/kpi',{
+                            only:['kpi']
+                        });
+                        
+                    }
+                });
+                
+            });
+        }
+
         return {
-            kpi
+            kpi,
+            deleteKpi
         }
     }
 }
 </script>
 <style>
+@import url('/resources/vendors/bower_components/sweetalert/dist/sweetalert.css');
+
 .row.heading-bg {
     display: flex;
     justify-content: space-between;

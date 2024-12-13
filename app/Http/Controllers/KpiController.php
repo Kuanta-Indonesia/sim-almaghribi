@@ -31,13 +31,15 @@ class KpiController extends Controller
         DB::beginTransaction();
 
         try {
-        $kpi = KpiInstrument::find($request->instrument);
-        if(!$kpi) {
+        if (!is_int($request->instrument)) {
             $kpi = new KpiInstrument();
             $kpi->nama = $request->instrument;
             $kpi->deskripsi = $request->deskripsiInstrument;
             $kpi->save();
+        }else{
+            $kpi = KpiInstrument::find($request->instrument);
         }
+      
         $kpiPerformance = new KpiPerformance();
         $kpiPerformance->kpi_instrument_id = $kpi->id;
         $kpiPerformance->value = $request->performance;
@@ -63,7 +65,7 @@ class KpiController extends Controller
             DB::rollBack();
             dd($e);
             // Handle the exception, for example, log the error or return an error response
-            return response()->json(['errors'=>'An error occurred while saving data.']); 
+            return response()->json(['error'=>'An error occurred while saving data.']); 
         }
     }
     function edit($id) {
@@ -118,9 +120,33 @@ class KpiController extends Controller
         return redirect()->route('kpi.index')->with('success', 'Data updated successfully.');
     } catch (Exception $e) {
         DB::rollBack();
-        dd($e);
         // Handle the exception, for example, log the error or return an error response
-        return response()->json(['errors'=>'An error occurred while updating data.']); 
-    }
+        return redirect()->route('kpi.index')->with('error', 'An error occurred while updating data.');
+        
     }
 }
+    function destroy($id) {
+        try {
+            //code...
+            DB::beginTransaction();
+
+            $kpiPerformance = KpiPerformance::find($id);
+            foreach ($kpiPerformance->score as $score) {
+                $score->delete();
+            }
+            foreach ($kpiPerformance->component as $component) {
+                $component->delete();
+            }
+            $kpiPerformance->delete();
+            DB::commit();
+            return redirect()->route('kpi.index')->with('success', 'Data deleted successfully.');
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            // dd($th);
+            DB::rollBack();
+            // Handle the exception, for example, log the error or return an error response
+            return redirect()->back()->with('error', 'Kpi sudah digunakan. jika tidak maka hubungi admin');
+            }
+        }
+    }
