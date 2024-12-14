@@ -15,7 +15,7 @@
                                 <li>
                                     <Link href="/kpi">Kpi</Link>
                                 </li>
-                                <li class="active"><a><span>Edit Kpi</span></a></li>
+                                <li class="active"><span>Edit Kpi</span></li>
                             </ol>
                         </div>
                     </div>

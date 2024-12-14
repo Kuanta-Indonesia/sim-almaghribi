@@ -15,7 +15,7 @@
                                 <li>
                                     <Link href="/kpi">Kpi</Link>
                                 </li>
-                                <li class="active"><a><span>Tambahkan Kpi</span></a></li>
+                                <li class="active"><span>Tambahkan Kpi</span></li>
                             </ol>
                         </div>
                     </div>

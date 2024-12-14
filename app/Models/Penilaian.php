@@ -37,6 +37,6 @@ class Penilaian extends Model
      */
     public function score()
     {
-        return $this->belongsTo(KpiScore::class, 'kpi_score_id', 'id', 'kpi_scores');
+        return $this->belongsTo(KpiScore::class, 'kpi_score_id', 'id', 'kpi_scores');   
     }
 }

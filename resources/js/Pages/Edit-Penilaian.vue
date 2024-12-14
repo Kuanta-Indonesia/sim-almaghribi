@@ -12,7 +12,7 @@
                         <li>
                             <Link href="/penilaian">Penilaian</Link>
                         </li>
-                        <li class="active"><span>Tambahkan Penilaian</span></li>
+                        <li class="active"><span>Edit Penilaian</span></li>
                     </ol>
                 </div>
             </div>
@@ -97,7 +97,6 @@
                         <label class="control-label mr-10 mb-10" >Pilih Score</label>
 
                         <select class="form-control" required v-model="form.score">
-                            
                             <option v-for="(item, index) in listScore" :value="item.id"  :key="index">{{ item.value + " ("+item.deskripsi+") " }}</option>
                         </select>
                     </div>
@@ -106,7 +105,7 @@
                 <div class="" >
                     <button v-if="pageNumber==2" @click="changePage(1)" class="btn btn-default mr-15" type="button">Back</button>
                     <button v-if="pageNumber==1" @click="changePage(2)" class="btn btn-primary" type="button">Next</button>
-                    <button v-if="pageNumber==2" class="btn btn-primary" type="submit">Tambahkan</button>
+                    <button v-if="pageNumber==2" class="btn btn-primary" type="submit">Ubah</button>
                 </div>
             </form>
 
@@ -121,10 +120,9 @@ import { ref } from 'vue';
 import moment from 'moment';
 
 export default {
-    name: 'Kpi',
+    name: 'Edit-Penilaian',
     setup() {
         const pageNumber = ref(1);
-        const listScore = ref([]);
         const page = usePage();
         if (page.props.value.flash.success) {
             $.toast({
@@ -144,7 +142,8 @@ export default {
                 position: 'top-right'
             });
         }
-        const { kpi, user } = usePage().props.value;
+        const { kpi, user,kpiScore } = usePage().props.value;
+        const listScore = ref(kpiScore.score.performance.score);
 
         const periode = [
             { id: 1, nama: 'Januari' },
@@ -161,12 +160,11 @@ export default {
             { id: 12, nama: 'Desember' },
         ];
         const form = useForm({
-            performance: '',
-            user: '',
-            score:'',
-            periode: ''
+            performance: kpiScore.score.kpi_performance_id,
+            user: kpiScore.user_id,
+            score: kpiScore.kpi_score_id,
+            periode: moment(kpiScore.periode).format('M')
         });
-
         const changePage = (number)=>{
             if (number==2) {
                 if (form.performance == '') {
@@ -183,7 +181,7 @@ export default {
 
         const submit = () => {
             // alert(form.performance);
-            form.post('/penilaian');
+            form.put('/penilaian/'+kpiScore.id);
         }
 
         return {

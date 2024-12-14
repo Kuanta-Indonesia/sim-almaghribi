@@ -32,7 +32,7 @@
 														<th>Skor</th>
                                                         <th>Periode</th> 
 														<th>Asesor</th>
-														<th>Aksi</th>
+														<th>Ubah</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -47,7 +47,9 @@
                                                         <td>{{ item.score.value +` (`+item.score.deskripsi+`)` }}</td>
                                                         <td>{{ moment(item.periode).format('MMMM') }}</td>
                                                         <td>{{ item.asesor.nama }}</td>
-                                                        <td>edit</td>
+                                                        <td>
+                                                            <Link :href="`/penilaian/${item.id}/edit`" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Edit</Link>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
 											</table>
