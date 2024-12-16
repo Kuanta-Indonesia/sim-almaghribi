@@ -16,6 +16,7 @@ import '../../vendors/bower_components/jquery/dist/jquery.min.js';
 import '../../vendors/bower_components/bootstrap/dist/js/bootstrap.min.js';
 
 
+
 import '../../dist/js/dropdown-bootstrap-extended.js';
 import '../../dist/js/jquery.slimscroll.js';
 import '../../dist/js/init.js';

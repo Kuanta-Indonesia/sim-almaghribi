@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\GuruController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -15,8 +14,14 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', [AuthController::class, 'login'])->name('login');
-Route::get('/guru', [GuruController::class, 'index'])->name('index');
-Route::get('/dashboard', function () {
-    return inertia('Dashboard');
-})->name('dashboard');
+Route::get('/', [AuthController::class, 'index'])->name('login');
+Route::post('/', [AuthController::class, 'login'])->name('login');
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/logout', [AuthController::class,'logout'])->name('logout');
+
+    Route::get('/dashboard', function () {
+        return inertia('Dashboard');
+    })->name('dashboard');
+
+});
