@@ -1,6 +1,6 @@
 <template>
-        <Navbar></Navbar>
-        <Sidebar></Sidebar>
+    <Navbar></Navbar>
+    <Sidebar></Sidebar>
 </template>
 <script>
 export default {

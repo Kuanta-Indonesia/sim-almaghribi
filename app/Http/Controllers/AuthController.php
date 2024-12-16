@@ -36,14 +36,14 @@ class AuthController extends Controller
         return redirect('/');
     }
 
-    public function register(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|max:255',
-            'email' => 'required|unique:users|email|max:255',
-            'password' => 'required|min:5|confirmed',
-            'kode' => 'required|unique:users|email|max:255',
-            'role_id' => 'required|string|max:2',
+            'nama' => 'required|string|max:100',
+            'email' => 'required|unique:users|email|max:100',
+            'password' => 'required|min:5',
+            'kode' => 'required|string|max:100',
+            'role_id' => 'required|max:1',
             'no_hp' => 'required|string|max:13',
         ]);
 
