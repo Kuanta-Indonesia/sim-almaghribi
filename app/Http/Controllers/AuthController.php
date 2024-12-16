@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,5 +34,26 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|unique:users|email|max:255',
+            'password' => 'required|min:5|confirmed',
+            'kode' => 'required|unique:users|email|max:255',
+            'role_id' => 'required|string|max:2',
+            'no_hp' => 'required|string|max:13',
+        ]);
+
+        User::create([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'kode' => $request->kode,
+            'role_id' => $request->role_id,
+            'no_hp' => $request->no_hp,
+        ]);
     }
 }
