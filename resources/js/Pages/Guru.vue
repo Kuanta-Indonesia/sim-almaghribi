@@ -125,8 +125,8 @@ const { teachers } = usePage().props.value;
                                                 <td>{{item.nama}}</td>
                                                 <td>{{item.no_hp}}</td>
                                                 <td>{{item.email}}</td>
-                                                <td>83%</td>
-                                                <td>Rp. 4.000.000</td>
+                                                <td></td>
+                                                <td></td>
                                             </tr>
                                             </tbody>
                                         </table>

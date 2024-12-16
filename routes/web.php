@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\GuruController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KpiController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PenilaianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +22,19 @@ Route::post('/', [AuthController::class, 'login'])->name('login');
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class,'logout'])->name('logout');
+    Route::post('/submitUser', [AuthController::class,'store'])->name('addUser');
+    Route::get('/guru', [GuruController::class,'index'])->name('guru');
 
     Route::get('/dashboard', function () {
         return inertia('Dashboard');
     })->name('dashboard');
+
+    Route::middleware(['cekrole:admin'])->group(function () {
+        Route::resource('kpi', KpiController::class);
+        Route::resource('penilaian', PenilaianController::class);
+    });
+
+    Route::get('/profile', [AuthController::class, 'indexEditProfile'])->name('profile');
+    Route::put('/profile', [AuthController::class, 'updateProfile'])->name('profile');
 
 });
