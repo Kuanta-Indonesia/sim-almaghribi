@@ -31,4 +31,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('penilaian', PenilaianController::class);
     });
 
+    Route::get('/profile', [AuthController::class, 'indexEditProfile'])->name('profile');
+    Route::put('/profile', [AuthController::class, 'updateProfile'])->name('profile');
+
 });

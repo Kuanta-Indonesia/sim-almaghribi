@@ -13,6 +13,7 @@ class AuthController extends Controller
     {
         return inertia('Login');
     }
+
     function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -33,5 +34,36 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function indexEditProfile()
+    {
+        return inertia('Profile', [
+            'user' => Auth::user()->load('role'),
+        ]);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|confirmed',
+            'no_hp' => 'required|string|max:15',
+        ]);
+
+        $user->nama  = $request->input('nama');
+        $user->email = $request->input('email');
+        $user->no_hp = $request->input('no_hp');
+
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->input('password'));
+        }
+
+        $user->save();
+
+        return inertia('Profile', ['user' => $user])->with('success', 'Profile updated successfully.');
     }
 }
