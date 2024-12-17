@@ -6,69 +6,19 @@
 			<div class="profile">
 				<div class="row">
 
-					<div class="col-lg-3 col-xs-12">
-						<div class="panel panel-default card-view  pa-0">
-							<div class="panel-wrapper collapse in">
-								<div class="panel-body  pa-0">
-									<div class="profile-box">
-										<div class="profile-cover-pic">
-											<div class="fileupload btn btn-default">
-												<span class="btn-text">edit</span>
-												<input class="upload" type="file">
-											</div>
-											<div class="profile-image-overlay"></div>
-										</div>
-										<div class="profile-info text-center">
-											<div class="profile-img-wrap">
-												<img class="inline-block mb-10" src="#" alt="user" />
-												<div class="fileupload btn btn-default">
-													<span class="btn-text">edit</span>
-													<input class="upload" type="file">
-												</div>
-											</div>
-											<h5 class="block mt-10 mb-5 weight-500 capitalize-font txt-danger">{{
-												form.nama }}</h5>
-											<h6 class="block capitalize-font pb-20">{{ user.role.nama }}</h6>
-										</div>
-										<div class="social-info">
-											<div class="row">
-												<div class="col-xs-4 text-center">
-													<span class="counts block head-font"><span
-															class="counter-anim">345</span></span>
-													<span class="counts-text block">post</span>
-												</div>
-												<div class="col-xs-4 text-center">
-													<span class="counts block head-font"><span
-															class="counter-anim">246</span></span>
-													<span class="counts-text block">followers</span>
-												</div>
-												<div class="col-xs-4 text-center">
-													<span class="counts block head-font"><span
-															class="counter-anim">898</span></span>
-													<span class="counts-text block">tweets</span>
-												</div>
-											</div>
-
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-9 col-xs-12">
-						<div class="panel panel-default card-view pa-0">
+					<div class="col-lg-12 col-xs-12">
+						<div class="panel panel-default  card-view pa-0">
 							<div class="panel-wrapper collapse in">
 								<div class="panel-body pb-0">
 									<div class="tab-struct custom-tab-1">
 										<ul role="tablist" class="nav nav-tabs nav-tabs-responsive" id="myTabs_8">
 											<li role="presentation" class=""><a data-toggle="tab" id="settings_tab_8"
-													role="tab" href="#settings_8" aria-expanded="false"><span>Edit
+													role="tab" href="#settings_1" aria-expanded="false"><span>Edit
 														profile</span></a></li>
 										</ul>
-										<div class="tab-content" id="myTabContent_8">
+										<div class="tab-content" id="myTabContent_1">
 
-											<div id="settings_8" class="tab-pane fade" role="tabpanel">
+											<div id="settings_8" class="tab-pane active" role="tabpanel">
 												<!-- Row -->
 												<div class="row">
 													<div class="col-lg-12">
@@ -188,20 +138,39 @@
 
 import { useForm, usePage } from '@inertiajs/inertia-vue3';
 import { Inertia } from '@inertiajs/inertia';
+import '/resources/vendors/bower_components/sweetalert/dist/sweetalert.min.js';
+
 
 
 export default {
 	name: 'Profile',
 	setup() {
-		const { user } = usePage().props.value;
-
+		const { user,flash } = usePage().props.value;
+		console.log(flash);
 		const form = useForm({
 			nama: user.nama,
 			email: user.email,
 			no_hp: user.no_hp,
 			password: user.password,
 		});
-
+		if (flash.success) {
+			$.toast({
+				heading: 'Success',
+				text: flash?.success,
+				showHideTransition: 'slide',
+				icon: 'success',
+				position: 'top-right'
+			});
+		}
+		if (flash.error) {
+			$.toast({
+				heading: 'error',
+				text: flash?.error,
+				showHideTransition: 'slide',
+				icon: 'error',
+				position: 'top-right'
+			});
+		}
 		const updateProfile = () => {
 			form.put('/profile', {
 				onSuccess: () => {
@@ -223,13 +192,11 @@ export default {
 			user,
 		};
 	},
-	methods: {
-		// Add your methods here
-	},
-	mounted() {
-		// Add your mounted logic here
-	}
+	
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+@import url('/resources/vendors/bower_components/sweetalert/dist/sweetalert.css');
+
+</style>

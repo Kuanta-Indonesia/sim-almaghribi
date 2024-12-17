@@ -9,7 +9,10 @@ class GuruController extends Controller
 {
     public function index()
     {
-        $teachers = User::where('role_id', 6)->get();
+
+        $teachers = User::whereHas('role', function ($query) {
+            $query->where('nama', 'guru');
+        })->get();
 
         return inertia('Guru', [
             'teachers' => $teachers,

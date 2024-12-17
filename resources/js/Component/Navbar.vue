@@ -32,7 +32,7 @@
 					<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX"
 						data-dropdown-out="flipOutX">
 						<li>
-							<a href="profile.html"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
+							<a href="/profile"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
 						</li>
 
 						<li class="divider"></li>

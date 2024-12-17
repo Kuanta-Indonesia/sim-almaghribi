@@ -21,9 +21,7 @@
                     <div v-for="(kpiPerformance, index) in kpiInstrument.performance" :key="index"
                         class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div class="panel panel-default card-view panel-refresh">
-                            <div class="refresh-container">
-                                <div class="la-anim-1"></div>
-                            </div>
+                          
                             <div class="panel-heading">
                                 <div class="pull-left">
                                     <h6 class="panel-title txt-dark">{{ kpiPerformance.value }}</h6>

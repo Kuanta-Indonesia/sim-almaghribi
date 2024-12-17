@@ -10,8 +10,8 @@
 						<div class="clearfix"></div>
 					</Link>
 				</li>
-				<li class="mt-10">
-					<Link href="/kpi" :class="{'active':isActive('/kpi')}">
+				<li v-if="role=='admin'" class="mt-10">
+					<Link  href="/kpi" :class="{'active':isActive('/kpi')}">
 						<div class="pull-left">
 							<i class="ti-clipboard mr-20"></i>
 							<span class="right-nav-text">KPI</span>
@@ -19,11 +19,29 @@
 						<div class="clearfix"></div>
 					</Link>
 				</li>
-				<li class="mt-10">
+				<li v-if="role=='admin'" class="mt-10">
+					<Link  href="/guru" :class="{'active':isActive('/guru')}">
+						<div class="pull-left">
+							<i class="ti-user mr-20"></i>
+							<span class="right-nav-text">Guru</span>
+						</div>
+						<div class="clearfix"></div>
+					</Link>
+				</li>
+				<li v-if="role=='admin'" class="mt-10">
 					<Link href="/penilaian" :class="{'active':isActive('/penilaian')}">
 						<div class="pull-left">
 							<i class="ti-pencil-alt mr-20"></i>
-							<span class="right-nav-text">penilaian</span>
+							<span class="right-nav-text">Penilaian</span>
+						</div>
+						<div class="clearfix"></div>
+					</Link>
+				</li>
+				<li v-if="role=='kepala sekolah'" class="mt-10">
+					<Link href="/coaching" :class="{'active':isActive('/coaching')}">
+						<div class="pull-left">
+							<i class="ti-user mr-20"></i>
+							<span class="right-nav-text">Coaching</span>
 						</div>
 						<div class="clearfix"></div>
 					</Link>

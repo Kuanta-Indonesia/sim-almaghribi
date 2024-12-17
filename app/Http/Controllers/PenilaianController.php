@@ -61,7 +61,6 @@ class PenilaianController extends Controller
             return redirect()->route('penilaian.index')->withSuccess('Penilaian berhasil disimpan');
         } catch (\Throwable $th) {
             //throw $th;
-            dd($th);
             DB::rollBack();
             return redirect()->back()->withError('Penilaian gagal disimpan');
         }
